@@ -22,27 +22,9 @@ namespace FeedChecker
             var request = (HttpWebRequest) WebRequest.Create(packageUrl);
 
             var result = GetResultByCallFeed(request);
-            var lines = SplitResult(result);
+            var lines = FeedParser.SplitResult(result);
 
-            return FindAllCoreFx20Preview1InTheFeedResult(lines);
-        }
-
-        private static IEnumerable<string> FindAllCoreFx20Preview1InTheFeedResult(IEnumerable<string> lines)
-        {
-            var onlyCoreFxPreview1ButWithPackgeInFront =
-                lines.Where(l => l.StartsWith("Package: dotnet-hostfxr-2.0.0-preview1"));
-
-            // imagine there is more code
-
-            return onlyCoreFxPreview1ButWithPackgeInFront.Select(l => l.Replace("Package: ", ""));
-        }
-
-        private static IEnumerable<string> SplitResult(string result)
-        {
-            var lines = result.Split(
-                new[] {"\r\n", "\r", "\n"},
-                StringSplitOptions.None);
-            return lines;
+            return FeedParser.FindAllCoreFx20Preview1InTheFeedResult(lines);
         }
 
         private static string GetResultByCallFeed(WebRequest request)

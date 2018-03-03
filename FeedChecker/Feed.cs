@@ -7,13 +7,18 @@ using System.Text;
 
 namespace FeedChecker
 {
-    public static class Feed
+    public class Feed
     {
-        private static string _feed;
+        private readonly string _feed;
 
-        public static IEnumerable<string> GetAllCoreFxPreview1(string feed)
+        public Feed(string feed)
         {
             _feed = feed;
+        }
+
+        public IEnumerable<string> GetAllCoreFxPreview1()
+        {
+            var feed = _feed;
             if (!feed.EndsWith("/"))
                 feed = feed + "/";
 

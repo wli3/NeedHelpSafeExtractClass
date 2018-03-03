@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
 
 namespace FeedChecker
 {
@@ -11,7 +6,8 @@ namespace FeedChecker
     {
         public static void Main(string[] args)
         {
-            foreach (var l in Feed.GetAllCoreFxPreview1("http://apt-mo.trafficmanager.net/repos/dotnet/dists/jessie"))
+            foreach (var l in new Feed("http://apt-mo.trafficmanager.net/repos/dotnet/dists/jessie")
+                .GetAllCoreFxPreview1())
                 Console.WriteLine(l);
         }
     }

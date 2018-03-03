@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FeedChecker
 {
-    internal class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
+        }
+
+        public static IEnumerable<string> GetAllCoreFxPreview1(string feed)
+        {
+            return new List<string> {"SomeString"};
         }
     }
 }

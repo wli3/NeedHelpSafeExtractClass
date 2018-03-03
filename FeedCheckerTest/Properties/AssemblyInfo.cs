@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FeedChecker")]
+[assembly: AssemblyTitle("FeedCheckerTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FeedChecker")]
+[assembly: AssemblyProduct("FeedCheckerTest")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("28BFFCE2-468C-429F-8613-5CB4A520E47B")]
+[assembly: Guid("9829E09E-FB65-4362-B864-BF934277945F")]
 
 // Version information for an assembly consists of the following four values:
 //

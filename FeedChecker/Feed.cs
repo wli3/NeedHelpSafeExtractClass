@@ -9,8 +9,11 @@ namespace FeedChecker
 {
     public static class Feed
     {
+        private static string _feed;
+
         public static IEnumerable<string> GetAllCoreFxPreview1(string feed)
         {
+            _feed = feed;
             if (!feed.EndsWith("/"))
                 feed = feed + "/";
 

@@ -10,7 +10,7 @@ namespace FeedCheckerTest
         public void WhenFeedUrlIsProvidedItListAllCorefxpreview1Version()
         {
             var result = Program.GetAllCoreFxPreview1("http://apt-mo.trafficmanager.net/repos/dotnet/dists/jessie");
-            result.Should().HaveCountGreaterOrEqualTo(354);
+            result.Should().HaveCountGreaterOrEqualTo(115);
         }
 
         [Fact]

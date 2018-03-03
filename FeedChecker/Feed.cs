@@ -27,7 +27,7 @@ namespace FeedChecker
             return FindAllCoreFx20Preview1InTheFeedResult(lines);
         }
 
-        private static IEnumerable<string> FindAllCoreFx20Preview1InTheFeedResult(string[] lines)
+        private static IEnumerable<string> FindAllCoreFx20Preview1InTheFeedResult(IEnumerable<string> lines)
         {
             var onlyCoreFxPreview1ButWithPackgeInFront =
                 lines.Where(l => l.StartsWith("Package: dotnet-hostfxr-2.0.0-preview1"));
@@ -37,7 +37,7 @@ namespace FeedChecker
             return onlyCoreFxPreview1ButWithPackgeInFront.Select(l => l.Replace("Package: ", ""));
         }
 
-        private static string[] SplitResult(string result)
+        private static IEnumerable<string> SplitResult(string result)
         {
             var lines = result.Split(
                 new[] {"\r\n", "\r", "\n"},
@@ -45,9 +45,9 @@ namespace FeedChecker
             return lines;
         }
 
-        private static string GetResultByCallFeed(HttpWebRequest request)
+        private static string GetResultByCallFeed(WebRequest request)
         {
-            var result = "";
+            string result;
             var response = request.GetResponse();
             using (var responseStream = response.GetResponseStream())
             {

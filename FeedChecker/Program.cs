@@ -43,7 +43,7 @@ namespace FeedChecker
             Result = result;
         }
 
-        public string Result { get; private set; }
+        public string Result { get; }
 
         public IEnumerable<string> Parse()
         {

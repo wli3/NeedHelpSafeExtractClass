@@ -7,11 +7,11 @@ using System.Text;
 
 namespace FeedChecker
 {
-    public class Feed1
+    public class Feed
     {
         private readonly string _requestUriString;
 
-        public Feed1(string feed)
+        public Feed(string feed)
         {
             if (!feed.EndsWith("/"))
                 feed = feed + "/";
@@ -65,7 +65,7 @@ namespace FeedChecker
     {
         public static void Main(string[] args)
         {
-            var result = new Feed1("http://apt-mo.trafficmanager.net/repos/dotnet/dists/jessie").DownloadFeed();
+            var result = new Feed("http://apt-mo.trafficmanager.net/repos/dotnet/dists/jessie").DownloadFeed();
             foreach (var l in new FeedParser(result).Parse())
                 Console.WriteLine(l);
         }

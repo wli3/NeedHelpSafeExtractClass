@@ -13,16 +13,12 @@ namespace FeedChecker
 
         public Feed1(string feed)
         {
-            Feed = feed;
-            var f = Feed;
-            if (!f.EndsWith("/"))
-                Feed = f + "/";
+            if (!feed.EndsWith("/"))
+                feed = feed + "/";
 
-            var packageUrl = f + "main/binary-amd64/Packages";
+            var packageUrl = feed + "main/binary-amd64/Packages";
             _requestUriString = packageUrl;
         }
-
-        private string Feed { get; }
 
         public string DownloadFeed()
         {

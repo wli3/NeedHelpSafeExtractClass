@@ -40,9 +40,9 @@ namespace FeedChecker
         }
     }
 
-    public class InClassName
+    public class FeedParser
     {
-        public InClassName(string result)
+        public FeedParser(string result)
         {
             Result = result;
         }
@@ -61,12 +61,12 @@ namespace FeedChecker
         public static IEnumerable<string> GetAllCoreFxPreview1(string feed)
         {
             var result = new Feed1(feed).DownloadFeed();
-            return FeedParser(new InClassName(result));
+            return Parse(new FeedParser(result));
         }
 
-        private static IEnumerable<string> FeedParser(InClassName inClassName)
+        private static IEnumerable<string> Parse(FeedParser feedParser)
         {
-            var lines = inClassName.Result.Split(
+            var lines = feedParser.Result.Split(
                 new[] {"\r\n", "\r", "\n"},
                 StringSplitOptions.None);
 

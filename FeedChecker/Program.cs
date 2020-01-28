@@ -14,7 +14,11 @@ namespace FeedChecker
         public Feed1(string feed)
         {
             Feed = feed;
-            _requestUriString = PackageUrl();
+            if (!Feed.EndsWith("/"))
+                Feed = Feed + "/";
+
+            var packageUrl = Feed + "main/binary-amd64/Packages";
+            _requestUriString = packageUrl;
         }
 
         public string Feed { get; set; }
@@ -32,15 +36,6 @@ namespace FeedChecker
             }
 
             return result;
-        }
-
-        private string PackageUrl()
-        {
-            if (!Feed.EndsWith("/"))
-                Feed = Feed + "/";
-
-            var packageUrl = Feed + "main/binary-amd64/Packages";
-            return packageUrl;
         }
     }
 

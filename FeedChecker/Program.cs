@@ -48,6 +48,21 @@ namespace FeedChecker
         }
 
         public string Result { get; private set; }
+
+        public IEnumerable<string> Parse()
+        {
+            var lines = Result.Split(
+                new[] {"\r\n", "\r", "\n"},
+                StringSplitOptions.None);
+
+            var onlyCoreFxPreview1ButWithPackgeInFront =
+                lines.Where(l => l.StartsWith("Package: dotnet-hostfxr-2.0.0-preview1"));
+
+            // imagine there is more code
+
+            var allCoreFxPreview = onlyCoreFxPreview1ButWithPackgeInFront.Select(l => l.Replace("Package: ", ""));
+            return allCoreFxPreview;
+        }
     }
 
     public class Program
@@ -61,22 +76,7 @@ namespace FeedChecker
         public static IEnumerable<string> GetAllCoreFxPreview1(string feed)
         {
             var result = new Feed1(feed).DownloadFeed();
-            return Parse(new FeedParser(result));
-        }
-
-        private static IEnumerable<string> Parse(FeedParser feedParser)
-        {
-            var lines = feedParser.Result.Split(
-                new[] {"\r\n", "\r", "\n"},
-                StringSplitOptions.None);
-
-            var onlyCoreFxPreview1ButWithPackgeInFront =
-                lines.Where(l => l.StartsWith("Package: dotnet-hostfxr-2.0.0-preview1"));
-
-            // imagine there is more code
-
-            var allCoreFxPreview = onlyCoreFxPreview1ButWithPackgeInFront.Select(l => l.Replace("Package: ", ""));
-            return allCoreFxPreview;
+            return new FeedParser(result).Parse();
         }
     }
 }

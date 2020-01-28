@@ -9,17 +9,19 @@ namespace FeedChecker
 {
     public class Feed1
     {
+        private string _requestUriString;
+
         public Feed1(string feed)
         {
             Feed = feed;
+            _requestUriString = PackageUrl();
         }
 
         public string Feed { get; set; }
 
         public string DownloadFeed()
         {
-            var packageUrl = PackageUrl();
-            var request = (HttpWebRequest) WebRequest.Create(packageUrl);
+            var request = (HttpWebRequest) WebRequest.Create(_requestUriString);
 
             var result = "";
             var response = request.GetResponse();

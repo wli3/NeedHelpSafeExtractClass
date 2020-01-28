@@ -69,14 +69,9 @@ namespace FeedChecker
     {
         public static void Main(string[] args)
         {
-            foreach (var l in GetAllCoreFxPreview1("http://apt-mo.trafficmanager.net/repos/dotnet/dists/jessie"))
+            var result = new Feed1("http://apt-mo.trafficmanager.net/repos/dotnet/dists/jessie").DownloadFeed();
+            foreach (var l in new FeedParser(result).Parse())
                 Console.WriteLine(l);
-        }
-
-        public static IEnumerable<string> GetAllCoreFxPreview1(string feed)
-        {
-            var result = new Feed1(feed).DownloadFeed();
-            return new FeedParser(result).Parse();
         }
     }
 }

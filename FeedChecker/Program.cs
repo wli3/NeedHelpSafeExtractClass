@@ -9,7 +9,7 @@ namespace FeedChecker
 {
     public class Feed1
     {
-        private string _requestUriString;
+        private readonly string _requestUriString;
 
         public Feed1(string feed)
         {

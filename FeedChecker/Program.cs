@@ -17,7 +17,7 @@ namespace FeedChecker
 
         public static IEnumerable<string> GetAllCoreFxPreview1(string feed)
         {
-            var result = Feed(feed);
+            var result = DownloadFeed(feed);
             var allCoreFxPreview = FeedParser(result);
             return allCoreFxPreview;
         }
@@ -37,7 +37,7 @@ namespace FeedChecker
             return allCoreFxPreview;
         }
 
-        private static string Feed(string feed)
+        private static string DownloadFeed(string feed)
         {
             if (!feed.EndsWith("/"))
                 feed = feed + "/";

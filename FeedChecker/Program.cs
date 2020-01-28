@@ -15,6 +15,25 @@ namespace FeedChecker
         }
 
         public string Feed { get; set; }
+
+        public string DownloadFeed()
+        {
+            if (!Feed.EndsWith("/"))
+                Feed = Feed + "/";
+
+            var packageUrl = Feed + "main/binary-amd64/Packages";
+            var request = (HttpWebRequest) WebRequest.Create(packageUrl);
+
+            var result = "";
+            var response = request.GetResponse();
+            using (var responseStream = response.GetResponseStream())
+            {
+                var reader = new StreamReader(responseStream, Encoding.UTF8);
+                result = reader.ReadToEnd();
+            }
+
+            return result;
+        }
     }
 
     public class Program
@@ -27,7 +46,7 @@ namespace FeedChecker
 
         public static IEnumerable<string> GetAllCoreFxPreview1(string feed)
         {
-            var result = DownloadFeed(new Feed1(feed));
+            var result = new Feed1(feed).DownloadFeed();
             var allCoreFxPreview = FeedParser(result);
             return allCoreFxPreview;
         }
@@ -45,25 +64,6 @@ namespace FeedChecker
 
             var allCoreFxPreview = onlyCoreFxPreview1ButWithPackgeInFront.Select(l => l.Replace("Package: ", ""));
             return allCoreFxPreview;
-        }
-
-        private static string DownloadFeed(Feed1 feed1)
-        {
-            if (!feed1.Feed.EndsWith("/"))
-                feed1.Feed = feed1.Feed + "/";
-
-            var packageUrl = feed1.Feed + "main/binary-amd64/Packages";
-            var request = (HttpWebRequest) WebRequest.Create(packageUrl);
-
-            var result = "";
-            var response = request.GetResponse();
-            using (var responseStream = response.GetResponseStream())
-            {
-                var reader = new StreamReader(responseStream, Encoding.UTF8);
-                result = reader.ReadToEnd();
-            }
-
-            return result;
         }
     }
 }

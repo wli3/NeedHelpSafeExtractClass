@@ -18,10 +18,7 @@ namespace FeedChecker
 
         public string DownloadFeed()
         {
-            if (!Feed.EndsWith("/"))
-                Feed = Feed + "/";
-
-            var packageUrl = Feed + "main/binary-amd64/Packages";
+            var packageUrl = PackageUrl();
             var request = (HttpWebRequest) WebRequest.Create(packageUrl);
 
             var result = "";
@@ -33,6 +30,15 @@ namespace FeedChecker
             }
 
             return result;
+        }
+
+        private string PackageUrl()
+        {
+            if (!Feed.EndsWith("/"))
+                Feed = Feed + "/";
+
+            var packageUrl = Feed + "main/binary-amd64/Packages";
+            return packageUrl;
         }
     }
 
